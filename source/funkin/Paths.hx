@@ -317,13 +317,10 @@ class Paths
 			return tempFrames;
 		}
 		
-		final xmlPath = getPath('images/$key.xml', parentFolder, checkMods);
-		final txtPath = getPath('images/$key.txt', parentFolder, checkMods);
-		final jsonPath = getPath('images/$key.json', parentFolder, checkMods);
-		
 		final graphic = image(key, parentFolder, allowGPU, checkMods);
 		
 		// sparrow
+		final xmlPath = getPath('images/$key.xml', parentFolder, checkMods);
 		if (FunkinAssets.exists(xmlPath))
 		{
 			// until flixel does null safety
@@ -334,7 +331,8 @@ class Paths
 				return frames;
 			}
 		}
-		
+
+		final jsonPath = getPath('images/$key.json', parentFolder, checkMods);
 		if (FunkinAssets.exists(jsonPath))
 		{
 			//
@@ -345,7 +343,8 @@ class Paths
 				return frames;
 			}
 		}
-		
+
+		final txtPath = getPath('images/$key.txt', parentFolder, checkMods);
 		@:nullSafety(Off) // until flixel does null safety
 		{
 			final frames = FlxAtlasFrames.fromSpriteSheetPacker(graphic, FunkinAssets.exists(txtPath) ? FunkinAssets.getContent(txtPath) : null);
